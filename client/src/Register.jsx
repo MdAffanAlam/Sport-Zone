@@ -11,7 +11,7 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('sport-zone-topaz.vercel.app/register', { name, email, password })
+    axios.post('https://sport-zone-topaz.vercel.app/register', { name, email, password })
       .then(result => {
         console.log(result);
         navigate('/login');
