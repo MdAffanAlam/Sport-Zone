@@ -11,11 +11,20 @@ const Register = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    axios.post('http://localhost:3001/register',{name,email,password})
-    .then(result => {console.log(result)
-      navigate('/login')})
-    .catch(err => console.log(err))
-  }
+    axios.post('http://localhost:3001/register', { name, email, password })
+      .then(result => {
+        console.log(result);
+        navigate('/login');
+      })
+      .catch(error => {
+        if (error.response && error.response.data && error.response.data.message === "Email already exists") {
+          alert("Error: Email already exists. Please use a different email.");
+        } else {
+          console.error("Error:", error);
+        }
+      });
+  };
+  
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-600 to-gray-300">
       <div className="bg-white p-8 rounded-lg shadow-2xl">

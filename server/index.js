@@ -9,18 +9,28 @@ app.use(cors());
 
 mongoose.connect("mongodb://127.0.0.1:27017/sport-user");
 
-app.post("/register", (req, res) => {
-  UserModel.create(req.body)
-    .then((newUser) => res.json(newUser))
-    .catch((err) => res.json(err));
+app.post("/register", async (req, res) => {
+  try {
+    const existingUser = await UserModel.findOne({ email: req.body.email });
+
+    if (existingUser) {
+      return res.status(409).json({ message: "Email already exists" });
+    }
+
+    const newUser = await UserModel.create(req.body);
+    return res.status(201).json(newUser);
+  } catch (err) {
+    console.error(err);
+    return res.status(500).json({ message: "Internal Server Error" });
+  }
 });
+
 app.post("/login", (req, res) => {
   const { email, password } = req.body;
 
   UserModel.findOne({ email: email })
     .then((user) => {
       if (user) {
-        // Use constant time comparison to mitigate timing attacks
         let isPasswordCorrect = true;
         for (let i = 0; i < user.password.length; i++) {
           if (user.password[i] !== password[i]) {
@@ -41,7 +51,6 @@ app.post("/login", (req, res) => {
       res.status(500).json({ error: error.message });
     });
 });
-
 
 app.listen(3001, () => {
   console.log("server is running");

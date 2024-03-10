@@ -24,6 +24,10 @@ function Teams() {
     alert(`Joining Team ${teamName} (ID: ${teamId})`);
   };
 
+  const handleCreateTeam = () => {
+    alert("Successfully Created Team"); 
+  };
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gradient-to-br from-purple-600 via-pink-500 to-red-500">
       <div className="bg-white p-8 rounded-lg shadow-2xl mb-8">
@@ -35,12 +39,19 @@ function Teams() {
         </Link>
         <h1 className="text-4xl font-bold text-center mb-8">Teams</h1>
 
+        <button
+          onClick={handleCreateTeam}
+          className="bg-green-500 text-white px-4 py-2 rounded-md hover:bg-green-600 mb-4"
+        >
+          Create Own Team
+        </button>
+
         <input
           type="text"
           placeholder="Find Teams"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="mt-4 p-2 border border-gray-300 rounded-md w-full"
+          className="mt-4 p-2 border border-gray-300 rounded-md w-full hover:border-indigo-500"
         />
 
         <table className="mt-4 w-full">

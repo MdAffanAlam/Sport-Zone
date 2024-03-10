@@ -13,7 +13,7 @@ const Login = () => {
     e.preventDefault();
     axios.post("http://localhost:3001/login", { email, password })
       .then((result) => {
-        alert("Login Successfully"); 
+        alert`Successfully logged in as ${result.data.name}`; 
         if (result.data.message === "Success") { 
           navigate("/");
         } else {

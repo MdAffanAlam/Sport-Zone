@@ -35,7 +35,7 @@ function Events() {
           placeholder="Search Events by Location"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full p-4 border border-gray-300 rounded-md mb-4"
+          className="w-full p-4 border border-gray-300 rounded-md mb-4 hover:border-indigo-500"
         />
         <table className="w-full">
           <thead>
