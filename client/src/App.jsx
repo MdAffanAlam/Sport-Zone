@@ -5,6 +5,7 @@ import Events from './Events';
 import Teams from './Teams';
 import Register from './Register';
 import Login from './Login';
+import User from './User';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/teams" element={<Teams />} />
         <Route path="/register" element={<Register />} />
         <Route path="/login" element={<Login />} />
+        <Route path='/user' element={<User/>}></Route>
       </Routes>
     </Router>
   );
